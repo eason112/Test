@@ -8,13 +8,13 @@
   <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs>
       <!-- 模擬相機位置的 GPS -->
-      <a-camera  gps-new-camera="simulateLatitude: 25.032; simulateLongitude: 121.564;"></a-camera>
+      <a-camera  gps-camera="simulateLatitude: 10; simulateLongitude: 10;"></a-camera>
 
 
       <!-- 另一個模擬的物體 -->
       <a-entity 
-        gps-new-entity-place="latitude: 25.038; longitude: 121.566;" 
-        geometry="primitive: sphere; radius: 1;" 
+        gps-entity-place="latitude: 10.0002; longitude: 10;" 
+        geometry="primitive: sphere; radius: 5;" 
         material="color: blue;">
       </a-entity>
     </a-scene>

@@ -24,7 +24,10 @@
   </head>
 
   <body>
-
+	<audio id="background-music" autoplay loop>
+		<source src="bgm.mp3" type="audio/mp3">
+		Your browser does not support the audio element.
+	</audio>
 	  <model-viewer id="gameboy" src="ball.glb"
 			ios-src="../Model_Gameboy.usdz"
 			alt="A 3D model of an astronaut"
@@ -84,6 +87,17 @@
       if(!ar){
         modelViewer.activateAR();
         ar=true;
+      }
+    });
+    const music = document.getElementById('background-music');
+
+    modelViewer.addEventListener('ar-status', (event) => {
+      if (event.detail.status === 'session-started') {
+        // 當 AR 模式開始時，播放音樂
+        music.play();
+      } else if (event.detail.status === 'session-ended') {
+        // 當 AR 模式結束時，暫停音樂
+        music.pause();
       }
     });
   </script>

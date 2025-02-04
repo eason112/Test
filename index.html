@@ -1,14 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Test</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
-  </head>
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-      <!-- 在AR中創建一個直徑為 10 公尺的球 -->
-      <a-sphere radius="5" position="0 5 -10" color="black"></a-sphere>
-    </a-scene>
-  </body>
+
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.js"></script>
+  <style>
+
+body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    <!-- 相機設定 -->
+    <a-camera id="camera" position="0 1.6 0"></a-camera>
+ <!-- 靜態海草或珊瑚（用三角形代替） -->
+    <!-- 海草 -->
+    <a-cone id="seaweed1" radius-bottom="0.2" height="1" color="green"></a-cone>
+    <a-cone id="seaweed2" radius-bottom="0.2" height="1" color="green"></a-cone>
+    <a-cone id="seaweed3" radius-bottom="0.3" height="1.2" color="lightgreen"></a-cone>
+    <a-cone id="seaweed4" radius-bottom="0.3" height="1.2" color="lightgreen"></a-cone>
+
+    <a-cone id="coral1" radius-bottom="0.4" height="1.5" color="red"></a-cone>
+    <a-cone id="coral2" radius-bottom="0.4" height="1.5" color="orange"></a-cone>
+    <a-cone id="coral3" radius-bottom="0.3" height="1" color="pink"></a-cone>
+    <a-cone id="coral4" radius-bottom="0.3" height="1" color="purple"></a-cone>
+    <!-- 這裡是圓周運動的方塊（魚） -->
+    <a-box id="fish1" width="0.5" height="0.2" depth="0.2" color="blue"></a-box>
+    <a-box id="fish2" width="0.5" height="0.2" depth="0.2" color="red"></a-box>
+    <a-box id="fish3" width="0.5" height="0.2" depth="0.2" color="green"></a-box>
+    <a-box id="fish4" width="0.5" height="0.2" depth="0.2" color="yellow"></a-box>
+
+  </a-scene>
+  <script>
+    // 定義魚群數量和更新參數
+    const fishes = [
+      { element: document.getElementById('fish1'), radius: Math.random() * 2 + 2, speed: Math.random() * 0.005, angle: Math.random() * Math.PI * 2, yOffset: Math.random() * 0.5, baseSpeed: Math.random() * 0.01 + 0.005, speedChangeInterval: Math.random() * 3000 + 2000, lastSpeedChangeTime: Date.now() },
+      { element: document.getElementById('fish2'), radius: Math.random() * 2 + 2, speed: Math.random() * 0.005, angle: Math.random() * Math.PI * 2, yOffset: Math.random() * 0.5, baseSpeed: Math.random() * 0.01 + 0.005, speedChangeInterval: Math.random() * 3000 + 2000, lastSpeedChangeTime: Date.now() },
+      { element: document.getElementById('fish3'), radius: Math.random() * 2 + 2, speed: Math.random() * 0.005, angle: Math.random() * Math.PI * 2, yOffset: Math.random() * 0.5, baseSpeed: Math.random() * 0.01 + 0.005, speedChangeInterval: Math.random() * 3000 + 2000, lastSpeedChangeTime: Date.now() },
+      { element: document.getElementById('fish4'), radius: Math.random() * 2 + 2, speed: Math.random() * 0.005, angle: Math.random() * Math.PI * 2, yOffset: Math.random() * 0.5, baseSpeed: Math.random() * 0.01 + 0.005, speedChangeInterval: Math.random() * 3000 + 2000, lastSpeedChangeTime: Date.now() }
+    ];
+
+    // 隨機放置魚的初始位置
+    function setInitialPositions() {
+      fishes.forEach(fish => {
+        // 隨機生成一個位置範圍
+        const angleOffset = Math.random() * Math.PI * 2; // 隨機生成魚的角度
+        const radius = Math.random() * 2 + 2; // 隨機距離相機的距離
+        const x = radius * Math.cos(angleOffset); // 計算 x 坐標
+        const z = radius * Math.sin(angleOffset); // 計算 z 坐標
+        const y = 1.5 + Math.random() * 0.5; // 計算 y 坐標，隨機上下浮動
+
+        // 設置魚的初始位置
+        fish.element.setAttribute('position', { x: x, y: y, z: z });
+      });
+    }
+
+    // 隨機更新魚的速度
+    function updateSpeed(fish) {
+      const now = Date.now();
+      if (now - fish.lastSpeedChangeTime > fish.speedChangeInterval) {  // 根據魚的隨機間隔更新速度
+        fish.speed = fish.baseSpeed * (Math.random() * 0.5);  // 隨機改變速度，範圍在 0.5 - 1.5 倍之間
+        fish.lastSpeedChangeTime = now;  // 更新速度改變的時間
+        fish.speedChangeInterval = Math.random() * 3000 + 2000;  // 隨機更新下一次速度改變的間隔
+      }
+    }
+
+    // 更新所有魚的位置
+    function updateFishPosition() {
+      fishes.forEach(fish => {
+        // 隨機更新魚的速度
+        updateSpeed(fish);
+
+        // 使用圓周運動公式來計算新的位置
+        fish.angle += fish.speed;  // 隨著時間變化角度
+        const x = fish.radius * Math.cos(fish.angle);  // 計算 x 坐標
+        const z = fish.radius * Math.sin(fish.angle);  // 計算 z 坐標
+        
+        // 上下浮動的效果，可以根據時間來讓魚上下浮動
+        const y = 1.5 + fish.yOffset * Math.sin(fish.angle * 2);  // 使用正弦函數讓魚上下浮動
+
+        // 更新魚的位置
+        fish.element.setAttribute('position', { x: x, y: y, z: z });
+
+        // 讓魚面向相機
+        fish.element.setAttribute('look-at', '#camera');
+      });
+
+      // 繼續更新
+      requestAnimationFrame(updateFishPosition);
+    }
+     // 隨機放置靜態物件（海草和珊瑚）在相機的四面八方
+     function setStaticObjectsPositions() {
+      const staticObjects = ['seaweed1', 'seaweed2', 'seaweed3', 'seaweed4', 'coral1', 'coral2', 'coral3', 'coral4'];
+
+      staticObjects.forEach(id => {
+        const object = document.getElementById(id);
+
+        // 隨機生成物件的座標，讓物件分佈在四周
+        const angleOffset = Math.random() * Math.PI * 2;  // 隨機角度
+        const radius = Math.random() * 3 + 2;  // 隨機距離相機的距離
+        const x = radius * Math.cos(angleOffset);  // 計算 x 坐標
+        const z = radius * Math.sin(angleOffset);  // 計算 z 坐標
+        const y = Math.random() * 1 + 1.5;  // 隨機的 y 坐標，放在水面上方
+
+        // 設置靜態物件的座標
+        object.setAttribute('position', { x: x, y: 0, z: z });
+      });
+    }
+
+    // 設置初始位置
+    setInitialPositions();
+    setStaticObjectsPositions();
+
+    // 開始運行更新函數
+    updateFishPosition();
+  </script>
+</body>
 </html>

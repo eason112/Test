@@ -6,10 +6,23 @@
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-        <a-camera id="camera" position="0 1.6 0" near="1" fov="50" far="10000"></a-camera>
-        <!-- 在AR中創建一個直徑為 10 公尺的球 -->
-        <a-sphere radius="5" position="0 0 -900" color="black" scale="10 10 10"></a-sphere>
+    <a-scene embedded arjs>
+      <!-- 模擬相機位置的 GPS -->
+      <a-entity camera gps-camera="latitude: 25.032; longitude: 121.564; altitude: 0"></a-entity>
+
+      <!-- 放置在某個模擬經緯度位置的物體 -->
+      <a-entity 
+        gps-entity-place="latitude: 25.033; longitude: 121.565; altitude: 0" 
+        geometry="primitive: sphere; height: 1; width: 1; depth: 1;" 
+        material="color: red;">
+      </a-entity>
+
+      <!-- 另一個模擬的物體 -->
+      <a-entity 
+        gps-entity-place="latitude: 25.034; longitude: 121.566; altitude: 0" 
+        geometry="primitive: sphere; radius: 1;" 
+        material="color: blue;">
+      </a-entity>
     </a-scene>
   </body>
 </html>

@@ -1,22 +1,60 @@
 <!DOCTYPE html>
-<html>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Test</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,user-scalable=no"  />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  
+  
+  <style>
+    model-viewer {
+      position:absolute;
+      border: 0;
+      border-radius: 0%;
+      margin: 0 auto;
+      height:50%;
+      width:80%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    #ar {
+      background-color: rgba(0, 0, 0, 0.396);
+      border-radius: 4px;
+      border: none;
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 20px; /* 控制字体大小 */
+    }
+	</style>
   </head>
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene real-world-meshing embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-        <a-camera id="camera" position="0 1.6 0"></a-camera>
 
-        <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="100" color="#7CFC00"></a-plane>
-
-
-        <a-sphere id="ball" radius="5" position="0 5 -8"  scale="1 1 1" material="src: image/love.png;"></a-sphere>
-    </a-scene>
-
-    <script>
-
-    </script>
+  <body>
+	<audio id="bg-audio" loop>
+		<source src="" type="audio/mp3">
+		Your browser does not support the audio element.
+	</audio>
+	  <model-viewer id="gameboy" 
+      reveal="manual"
+      poster="image/ball1.png"
+      src="assets/ball1.glb"
+			ios-src="../Model_Gameboy.usdz"
+			alt="A 3D model of an astronaut"
+      ar
+      ar-modes="scene-viewer"
+      disable-zoom
+			auto-rotate
+	    camera-controls>
+      <button slot="ar-button" style="display: none;"></button>
+    </model-viewer>
+    <button id='ar'>
+      進入AR模式
+    </button>
   </body>
+
+  <script src="script.js"></script>
 </html>

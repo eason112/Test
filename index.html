@@ -33,8 +33,8 @@
 			alt="A 3D model of an astronaut"
 			ar
       ar-modes="scene-viewer"
+      disable-zoom
 			auto-rotate
-      ar-scale="fixed"
 	    camera-controls>
     <button id='ar' slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; ">
         👋 Activate AR
@@ -60,7 +60,7 @@
     const arbutton = document.getElementById('ar');
     arbutton.addEventListener("click", function() {
       // 尝试关闭当前页面
-      music.play();
+      //music.play();
     });
   </script>
 </html>

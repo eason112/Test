@@ -11,7 +11,7 @@
 		position:absolute;
 		border: 0;
 		border-radius: 0%;
-		height:50%;
+		height:100%;
 		width:100%;
 		margin: 0 auto;
     top: 50%;
@@ -32,6 +32,7 @@
 			ios-src="../Model_Gameboy.usdz"
 			alt="A 3D model of an astronaut"
 			ar
+      ar-modes="scene-viewer"
 			auto-rotate
 	    camera-controls>
     
@@ -43,7 +44,7 @@
   <script>
     // 获取返回按钮
     const modelViewer = document.querySelector('model-viewer');
-    const arbutton = document.querySelector('arbutton');
+
     let ar=false;
     
     

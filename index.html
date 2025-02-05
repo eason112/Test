@@ -19,15 +19,6 @@
     left: 50%;
     transform: translate(-50%,-50%);
 	}
-  #ar {
-    background-color: rgba(0, 0, 0, 0.396);
-    border-radius: 4px;
-    border: none;
-    position: absolute;
-    top: 50%;
-    right: 50%;
-    font-size: 20; /* 控制字体大小 */
-  }
 		
 	
 	</style>
@@ -38,7 +29,7 @@
 		<source src="bgm.mp3" type="audio/mp3">
 		Your browser does not support the audio element.
 	</audio>
-	  <model-viewer id="gameboy" src=""
+	  <model-viewer id="gameboy" src="ball1.glb"
 			ios-src="../Model_Gameboy.usdz"
 			alt="A 3D model of an astronaut"
       ar
@@ -46,30 +37,25 @@
       disable-zoom
 			auto-rotate
 	    camera-controls>
-
+      <button id='ar' slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; ">
+        進入AR模式
+      </button>
     </model-viewer>
-    <button id='ar'>
-      AR模式
-    </button>
   </body>
 
 
   <script>
     // 获取返回按钮
     const modelViewer = document.querySelector('model-viewer');
-    function hideModel() {
-    // 隐藏模型
-    modelViewer.style.display = 'none';
-    }
     let ar=false;
     
     var date = new Date();
     console.log(date.getHours());
     if(date.getHours()<11){
-      //modelViewer.src='ball1.glb';
+      modelViewer.src='ball1.glb';
     }
     else{
-      //modelViewer.src='ball.glb';
+      modelViewer.src='ball.glb';
     }
     function isMobileDeviceAR() {
       const userAgent = navigator.userAgent.toLowerCase();
@@ -78,16 +64,9 @@
 
     const music = document.getElementById('background-music');
     const arbutton = document.getElementById('ar');
-    arbutton.addEventListener("touchstart", function() {
+    arbutton.addEventListener("click", function() {
       // 尝试关闭当前页面
-      if(date.getHours()<11){
-      modelViewer.src='ball1.glb';
-      }
-      else{
-      modelViewer.src='ball.glb';
-      }
       //music.play();
-      modelViewer.activateAR();
     });
   </script>
 </html>

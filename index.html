@@ -28,7 +28,10 @@
 		<source src="bgm.mp3" type="audio/mp3">
 		Your browser does not support the audio element.
 	</audio>
-	  <model-viewer id="gameboy" src="ball1.glb"
+	  <model-viewer id="gameboy" 
+      reveal="manual"
+      poster="image/love.png"
+      src="ball1.glb"
 			ios-src="../Model_Gameboy.usdz"
 			alt="A 3D model of an astronaut"
       ar
@@ -45,7 +48,6 @@
 
 
   <script>
-    // 获取返回按钮
     let audioFiles = ['sound1.mp3', 'sound2.mp3', 'sound3.mp3']; // 音效文件列表
     let currentAudioIndex = 0; // 当前播放音效的索引
     let audioElement = document.getElementById('bg-audio'); // 获取音效元素

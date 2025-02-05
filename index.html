@@ -33,17 +33,14 @@
 			alt="A 3D model of an astronaut"
 			ar
 			auto-rotate
-	    camera-controls>
-    
-    </model-viewer>
-    
+	    	camera-controls></model-viewer>
+      <button id="backButton">返回</button>
   </body>
 
 
   <script>
     // 获取返回按钮
     const modelViewer = document.querySelector('model-viewer');
-    const arbutton = document.querySelector('arbutton');
     let ar=false;
     
     
@@ -52,7 +49,56 @@
       return /iphone|ipod|android|windows phone|blackberry|iemobile/.test(userAgent);
     }
 
+    function triggerAR() {
+      
+
+          //arButton.click();  // 模擬點擊 AR 按鈕
+          //modelViewer.activateAR();
+    }
+
+    if(isMobileDeviceAR()){
+      if (modelViewer) {
+        modelViewer.addEventListener('load', function() {
+            console.log('Model-viewer has fully loaded.');
+            // 等待 shadowRoot 生成，並觸發 AR 按鈕
+            //backButton.click();
+            setTimeout(() => {
+              
+            },1000);
+            
+        });
+    }
+    }
+    const backButton = document.getElementById("backButton");
+
+    // 为返回按钮添加点击事件
+    backButton.addEventListener("click", function() {
+      window.close();
+    });
+    document.addEventListener("click", function() {
+      // 尝试关闭当前页面
+      if(!ar){
+        modelViewer.activateAR();
+        ar=true;
+      }
+    });
+    modelViewer.addEventListener("click", function() {
+      // 尝试关闭当前页面
+      if(!ar){
+        modelViewer.activateAR();
+        ar=true;
+      }
+    });
     const music = document.getElementById('background-music');
 
+    modelViewer.addEventListener('ar-status', (event) => {
+      if (event.detail.status === 'session-started') {
+        // 當 AR 模式開始時，播放音樂
+        music.play();
+      } else if (event.detail.status === 'session-ended') {
+        // 當 AR 模式結束時，暫停音樂
+        music.pause();
+      }
+    });
   </script>
 </html>

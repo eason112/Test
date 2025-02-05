@@ -23,15 +23,15 @@ const music = document.getElementById('background-music');
 const arbutton = document.getElementById('ar');
 arbutton.addEventListener("click", function() {
     // 尝试关闭当前页面
-    changeAudio();  // 播放第一种音效
-    setInterval(changeAudio, 60 * 1000);  // 每10分钟切换一次音效
+    //changeAudio();  // 播放第一种音效
+    //setInterval(changeAudio, 60 * 1000);  // 每10分钟切换一次音效
     modelViewer.activateAR();
     //music.play();
 });
 
 function changeAudio() {
     audioElement.src = audioFiles[currentAudioIndex];
-    //audioElement.play();  // 播放音效
+    audioElement.play();  // 播放音效
 
     // 更新当前音效索引，循环播放音效
     currentAudioIndex = (currentAudioIndex + 1) % audioFiles.length;

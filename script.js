@@ -8,10 +8,12 @@ var date = new Date();
 console.log(date.getMinutes());
 if(date.getHours()<11){
     modelViewer.src='assets/ball1.glb';
+    modelViewer.setAttribute('ios-src', 'assets/ball1.usdz');
     modelViewer.poster='image/ball1.png';
 }
 else{
     modelViewer.src='assets/ball.glb';
+    modelViewer.setAttribute('ios-src', 'assets/ball.usdz');
     modelViewer.poster='image/ball.png';
 }
 function isMobileDeviceAR() {

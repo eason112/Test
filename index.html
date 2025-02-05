@@ -8,24 +8,12 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   
   <style>
-	model-viewer {
-		position:absolute;
-		border: 0;
-		border-radius: 0%;
-		height:50%;
-		width:100%;
-		margin: 0 auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-	}
-		
-	
+
 	</style>
   </head>
 
   <body>
-	<audio id="background-music" autoplay loop>
+	<audio id="bg-audio" loop>
 		<source src="bgm.mp3" type="audio/mp3">
 		Your browser does not support the audio element.
 	</audio>
@@ -46,11 +34,14 @@
 
   <script>
     // 获取返回按钮
+    let audioFiles = ['sound1.mp3', 'sound2.mp3', 'sound3.mp3']; // 音效文件列表
+    let currentAudioIndex = 0; // 当前播放音效的索引
+    let audioElement = document.getElementById('bg-audio'); // 获取音效元素
+
     const modelViewer = document.querySelector('model-viewer');
-    let ar=false;
     
     var date = new Date();
-    console.log(date.getHours());
+    console.log(date.getMinutes());
     if(date.getHours()<11){
       modelViewer.src='ball1.glb';
     }
@@ -66,7 +57,17 @@
     const arbutton = document.getElementById('ar');
     arbutton.addEventListener("click", function() {
       // 尝试关闭当前页面
+      changeAudio();  // 播放第一种音效
+      setInterval(changeAudio, 10 * 60 * 1000);  // 每10分钟切换一次音效
       //music.play();
     });
+
+    function changeAudio() {
+      audioElement.src = audioFiles[currentAudioIndex];
+      audioElement.play();  // 播放音效
+
+      // 更新当前音效索引，循环播放音效
+      currentAudioIndex = (currentAudioIndex + 1) % audioFiles.length;
+    }
   </script>
 </html>

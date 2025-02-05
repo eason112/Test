@@ -44,11 +44,11 @@
       disable-zoom
 			auto-rotate
 	    camera-controls>
-      <button id='ar' slot="ar-button">
-        AR模式
-      </button>
+
     </model-viewer>
-    
+    <button id='ar'>
+      AR模式
+    </button>
   </body>
 
 
@@ -85,7 +85,16 @@
       modelViewer.src='ball.glb';
       }
       //music.play();
-      //modelViewer.activateAR();
+      modelViewer.addEventListener('load', function() {
+            console.log('Model-viewer has fully loaded.');
+            // 等待 shadowRoot 生成，並觸發 AR 按鈕
+            //backButton.click();
+            setTimeout(() => {
+              modelViewer.activateAR();
+            },1000);
+            
+        });
+      
     });
   </script>
 </html>

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,user-scalable=no"  />
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   
   <style>
@@ -85,16 +85,9 @@
       modelViewer.src='ball.glb';
       }
       //music.play();
-      modelViewer.addEventListener('load', function() {
-            console.log('Model-viewer has fully loaded.');
-            // 等待 shadowRoot 生成，並觸發 AR 按鈕
-            //backButton.click();
-            setTimeout(() => {
-              modelViewer.activateAR();
-            },1000);
-            
-        });
-      
+      setTimeout(() => {
+        modelViewer.activateAR();
+      },1000);
     });
   </script>
 </html>

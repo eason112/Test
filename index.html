@@ -36,8 +36,8 @@
       disable-zoom
 			auto-rotate
 	    camera-controls>
-    <button id='ar' slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; ">
-        👋 Activate AR
+    <button id='ar' slot="ar-button" style="background-color: white; border-radius: 10px; border: none; position: absolute; top: 16px; right: 16px; ">
+        AR模式
     </button>
     </model-viewer>
     
@@ -50,7 +50,14 @@
 
     let ar=false;
     
-    
+    var date = new Date();
+    console.log(date.getHours());
+    if(date.getHours()<11){
+      modelViewer.src='ball1.glb';
+    }
+    else{
+      modelViewer.src='ball.glb';
+    }
     function isMobileDeviceAR() {
       const userAgent = navigator.userAgent.toLowerCase();
       return /iphone|ipod|android|windows phone|blackberry|iemobile/.test(userAgent);

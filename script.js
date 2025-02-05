@@ -31,7 +31,7 @@ arbutton.addEventListener("click", function() {
 
 function changeAudio() {
     audioElement.src = audioFiles[currentAudioIndex];
-    audioElement.play();  // 播放音效
+    //audioElement.play();  // 播放音效
 
     // 更新当前音效索引，循环播放音效
     currentAudioIndex = (currentAudioIndex + 1) % audioFiles.length;

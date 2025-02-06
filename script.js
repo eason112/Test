@@ -34,11 +34,13 @@ arbutton.addEventListener("click", function() {
     //music.play();
 });
 changeBTN.addEventListener("click", function() {
-  const material = modelViewer.model.materials[1];
+  const material1 = modelViewer.model.materials[0];
+  const material2 = modelViewer.model.materials[1];
   console.log(modelViewer.model.materials)
   //material.alphaMode='Blend';
   //material.pbrMetallicRoughness.setMetallicFactor(1);
-  material.pbrMetallicRoughness.setBaseColorFactor([0,0,0,0.1]);
+  material1.pbrMetallicRoughness.setBaseColorFactor([0,0,0,0.5]);
+  material2.pbrMetallicRoughness.setBaseColorFactor([0,0,0,0.1]);
 });
 
 function changeAudio() {

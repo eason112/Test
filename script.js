@@ -12,7 +12,7 @@ if(date.getHours()<9){
     modelViewer.poster='image/ball1.png';
 }
 else{
-    modelViewer.src='assets/new/ball.glb';
+    modelViewer.src='assets/ball.glb';
     modelViewer.setAttribute('ios-src', 'assets/ball.usdz');
     modelViewer.poster='image/ball.png';
 }

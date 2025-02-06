@@ -6,13 +6,13 @@ const modelViewer = document.querySelector('model-viewer');
     
 var date = new Date();
 console.log(date.getMinutes());
-if(date.getHours()<11){
+if(date.getHours()<9){
     modelViewer.src='assets/ball1.glb';
     modelViewer.setAttribute('ios-src', 'assets/ball1.usdz');
     modelViewer.poster='image/ball1.png';
 }
 else{
-    modelViewer.src='assets/ball.glb';
+    modelViewer.src='assets/new/ball.glb';
     modelViewer.setAttribute('ios-src', 'assets/ball.usdz');
     modelViewer.poster='image/ball.png';
 }

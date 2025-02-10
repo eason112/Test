@@ -8,9 +8,9 @@ const modelViewer = document.querySelector('model-viewer');
 
 var date = new Date();
 console.log(date.getMinutes());
-if(date.getHours()<9){
-    modelViewer.src='assets/ball1.glb';
-    modelViewer.setAttribute('ios-src', 'assets/ball1.usdz');
+if(date.getHours()>18){
+    modelViewer.src='assets/night_ball.glb';
+    modelViewer.setAttribute('ios-src', 'assets/night_ball.usdz');
     modelViewer.poster='image/ball1.png';
 }
 else{

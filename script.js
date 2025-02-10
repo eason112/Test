@@ -14,8 +14,8 @@ if(date.getHours()<9){
     modelViewer.poster='image/ball1.png';
 }
 else{
-    modelViewer.src='assets/ball.glb';
-    modelViewer.setAttribute('ios-src', 'assets/ball.usdz');
+    modelViewer.src='assets/soon_ball.glb';
+    modelViewer.setAttribute('ios-src', 'assets/soon_ball.usdz');
     modelViewer.poster='image/ball.png';
 }
 function isMobileDeviceAR() {

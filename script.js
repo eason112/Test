@@ -23,7 +23,7 @@ function isMobileDeviceAR() {
     return /iphone|ipod|android|windows phone|blackberry|iemobile/.test(userAgent);
 }
 
-const music = document.getElementById('background-music');
+const music = document.getElementById('bg-audio');
 const arbutton = document.getElementById('ar');
 
 
@@ -31,9 +31,10 @@ const arbutton = document.getElementById('ar');
 arbutton.addEventListener("click", function() {
     //changeAudio();  // 播放第一種音效
     //setInterval(changeAudio, 60 * 1000);  // 每10分鐘切換一次音效
+    music.play();
     modelViewer.activateAR();
 
-    music.play();
+    
 });
 
 

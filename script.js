@@ -33,7 +33,7 @@ arbutton.addEventListener("click", function() {
     //setInterval(changeAudio, 60 * 1000);  // 每10分鐘切換一次音效
     modelViewer.activateAR();
 
-    //music.play();
+    music.play();
 });
 
 

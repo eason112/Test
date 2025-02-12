@@ -11,12 +11,12 @@ console.log(date.getMinutes());
 if(date.getHours()>18){
     modelViewer.src='assets/night_ball.glb';
     modelViewer.setAttribute('ios-src', 'assets/night_ball.usdz');
-    modelViewer.poster='image/ball1.png';
+    modelViewer.poster='image/night_ball.png';
 }
 else{
     modelViewer.src='assets/soon_ball.glb';
     modelViewer.setAttribute('ios-src', 'assets/soon_ball.usdz');
-    modelViewer.poster='image/ball.png';
+    modelViewer.poster='image/soon_ball.png';
 }
 function isMobileDeviceAR() {
     const userAgent = navigator.userAgent.toLowerCase();

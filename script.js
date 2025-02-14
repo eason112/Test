@@ -7,8 +7,8 @@ const modelViewer = document.querySelector('model-viewer');
 
 
 var date = new Date();
-console.log(date.getMinutes());
-if(date.getHours()>18){
+//console.log(date.getMinutes());
+if(date.getHours()>17){
     modelViewer.src='assets/night_ball.glb?sound=sounds/sound1.mp3';
     modelViewer.setAttribute('ios-src', 'assets/night_ball.usdz');
     modelViewer.poster='image/night_ball.png';

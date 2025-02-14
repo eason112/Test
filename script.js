@@ -26,9 +26,6 @@ function isMobileDeviceAR() {
 const music = document.getElementById('bg-audio');
 const arbutton = document.getElementById('ar');
 
-modelViewer.shadowRoot.querySelector('#default-exit-webxr-ar-button').addEventListener("click", function(){
-    music.play();
-});
 
 arbutton.addEventListener("click", function() {
     //changeAudio();  // 播放第一種音效

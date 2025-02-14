@@ -9,12 +9,12 @@ const modelViewer = document.querySelector('model-viewer');
 var date = new Date();
 console.log(date.getMinutes());
 if(date.getHours()>18){
-    modelViewer.src='assets/night_ball.glb';
+    modelViewer.src='assets/night_ball.glb?sounds/sound1.mp3';
     modelViewer.setAttribute('ios-src', 'assets/night_ball.usdz');
     modelViewer.poster='image/night_ball.png';
 }
 else{
-    modelViewer.src='assets/soon_ball.glb';
+    modelViewer.src='assets/soon_ball.glb?sounds/sound1.mp3';
     modelViewer.setAttribute('ios-src', 'assets/soon_ball.usdz');
     modelViewer.poster='image/soon_ball.png';
 }

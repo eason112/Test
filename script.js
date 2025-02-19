@@ -63,7 +63,7 @@ function changeAudio() {
 const onProgress = (event) => {
     const progressBar = event.target.querySelector('.progress-bar');
     const updatingBar = event.target.querySelector('.update-bar');
-  
+    console.log(event.detail.totalProgress)
     if (event.detail.totalProgress === 0) {
       progressBar.style.display = 'block';
       updatingBar.style.width = '0%';
@@ -73,7 +73,7 @@ const onProgress = (event) => {
       if (event.detail.totalProgress === 1) {
         setTimeout(() => {
           progressBar.style.display = 'none';
-        }, 500);
+        }, 1000);
       }
     }
   };

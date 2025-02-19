@@ -59,3 +59,22 @@ function changeAudio() {
   material1.pbrMetallicRoughness.setBaseColorFactor([0,0,0,0.5]);
   material2.pbrMetallicRoughness.setBaseColorFactor([0,0,0,0.1]);
 });*/
+
+const onProgress = (event) => {
+    const progressBar = event.target.querySelector('.progress-bar');
+    const updatingBar = event.target.querySelector('.update-bar');
+  
+    if (event.detail.totalProgress === 0) {
+      progressBar.style.display = 'block';
+      updatingBar.style.width = '0%';
+    } else {
+      updatingBar.style.width = `${event.detail.totalProgress * 100}%`;
+  
+      if (event.detail.totalProgress === 1) {
+        setTimeout(() => {
+          progressBar.style.display = 'none';
+        }, 500);
+      }
+    }
+  };
+  document.querySelector('#gameboy').addEventListener('progress', onProgress);

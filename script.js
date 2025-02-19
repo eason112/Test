@@ -73,7 +73,7 @@ const onProgress = (event) => {
       if (event.detail.totalProgress === 1) {
         setTimeout(() => {
           progressBar.style.display = 'none';
-        }, 1000);
+        }, 500);
       }
     }
   };

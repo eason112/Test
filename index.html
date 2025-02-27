@@ -69,6 +69,16 @@
       float: left;
       transition: width 0.3s;
     }
+    /* 控制 GIF 的位置，放在 #sound-message 正下方 */
+
+    .gif-container img {
+      position: absolute;
+      width: 10%;
+      height: auto;
+      top: 23%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 	</style>
   </head>
 
@@ -94,9 +104,13 @@
     <button id='ar'>
       查看AR
     </button>
-    <div id="sound-message">
-      請開啟聲音以獲得完整體驗
-    </div>
+      <div id="sound-message">
+        請開啟聲音以獲得完整體驗
+      </div>
+      <div class="gif-container">
+        <img src="image/sound.gif" alt="Animated GIF" />
+      </div>
+        <div class="message-container">
   </body>
 
   <script src="script.js"></script>
